@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Home() {
+function Home({toDos}) {
   const [text, setText] = useState("");
   
   function onChange(e) {
@@ -15,13 +15,19 @@ function Home() {
   return (
     <>
       <h1>To Do</h1>
-      <form onSubmit={}>
+      <form onSubmit={onSubmit}>
         <input type="text" value={text} onChange={onChange} />
         <button>Add</button>
       </form>
-      <ul></ul>
+      <ul>
+        {JSON.stringify(toDos)}
+      </ul>
     </>
   )
 }
 
-export default Home;
+function mapStateToProps(state){
+  return { toDos: state };
+};
+
+export default connet(mapStateToProps)(Home);
